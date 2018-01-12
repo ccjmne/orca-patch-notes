@@ -1,0 +1,21 @@
+{
+  "name": "orca-whatsnew",
+  "version": "0.0.1",
+  "description": "A set of AWS Lambda functions to manage updates' summary for NCLS Development's Orca solution",
+  "main": "index.js",
+  "keywords": [
+    "aws",
+    "lambda",
+    "nclsdevelopment",
+    "orca"
+  ],
+  "author": {
+    "name": "ccjmne",
+    "email": "ccjmne@gmail.com",
+    "url": "https://github.com/ccjmne"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "s3": "^4.4.0"
+  }
+}
