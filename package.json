@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "set NODE_ENV=production&& webpack --progress",
+    "package": "aws cloudformation package --template-file app-spec.yaml --output-template-file dist/app-spec.packaged.yaml --s3-bucket orca-patch-notes",
+    "deploy": "aws cloudformation deploy --template-file dist/app-spec.packaged.yaml --stack-name orca-patch-notes --capabilities CAPABILITY_IAM"
   },
   "keywords": [
     "aws",
