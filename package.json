@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Serverless application distributing patch notes for NCLS Development's Orca solution, using AWS CloudFormation",
   "main": "index.js",
+  "scripts": {
+    "build": "set NODE_ENV=production&& webpack --progress",
+  },
   "keywords": [
     "aws",
     "lambda",
