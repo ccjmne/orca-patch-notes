@@ -1,7 +1,7 @@
 {
   "name": "orca-whatsnew",
   "version": "0.0.1",
-  "description": "A set of AWS Lambda functions to manage updates' summary for NCLS Development's Orca solution",
+  "description": "Serverless application distributing patch notes for NCLS Development's Orca solution, using AWS CloudFormation",
   "main": "index.js",
   "keywords": [
     "aws",
