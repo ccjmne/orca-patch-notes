@@ -4,7 +4,7 @@ Serverless application distributing patch notes for [NCLS Development's Orca sol
 
 The project is packaged into an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) stack that contains:
 
-- an [AWS API Gateway](https://aws.amazon.com/api-gateway/) API with a single resource (`path-notes/`) exposing its `GET`, `PUT` and `DELETE` methods to:
+- an [AWS API Gateway](https://aws.amazon.com/api-gateway/) API with a single resource (`/{version}`) exposing its `GET`, `PUT` and `DELETE` methods to:
 - a collection of [AWS Lambda](https://aws.amazon.com/lambda/) functions that manipulate data stored in:
 - a single [AWS DynamoDB](https://aws.amazon.com/dynamodb/) table
 
