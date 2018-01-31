@@ -10,7 +10,7 @@ const Request = require('./src/request');
  * Query Parameters:
  * - previous: Boolean
  * Return:
- *   Relevant release notes.
+ *   Latest release notes for specified version, or latest altogether in no version specified.
  *   If `previous` is set, also includes all the patch notes leading to that version.
  **/
 exports.get = function (event, context, callback) {

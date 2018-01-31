@@ -10,11 +10,11 @@ const dynamo = new doc.DynamoDB(new AWS.DynamoDB());
 const semver = require('semver');
 
 function validateVersion(version) {
-  if (semver.valid(version)) {
+  if (typeof version === 'undefined' || version === null || semver.valid(version)) {
     return Promise.resolve();
   }
 
-  throw `Invalid version: ${version}`;
+  throw new TypeError(`Invalid version: ${version}`);
 }
 
 function validateContents(contents) {
@@ -40,11 +40,15 @@ function put(version, contents) {
   }).promise());
 }
 
+/**
+ * Returns latest patch notes for specified version, or latest overall if no version number specified.
+ * Includes previous versions' patch notes (ordered by descending version number) iff `includePrevious` is truthy.
+ **/
 function getRelevantPatchNotes(version, includePrevious) {
   return validateVersion(version).then(() =>
     dynamo.scan({ 'TableName': tableName }).promise().then(response => response.Items)
     .then(items => items
-      .filter(entry => semver.valid(entry.version) && semver.lte(entry.version, version))
+      .filter(version ? entry => semver.valid(entry.version) && semver.lte(entry.version, version) : () => true)
       .sort((x, y) => semver.rcompare(x.version, y.version)))
     .then(items => includePrevious ? items : items[0]));
 }

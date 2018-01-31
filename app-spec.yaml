@@ -12,10 +12,15 @@ Resources:
         Variables:
           TABLE_NAME:        !Ref Table
       Events:
-        GetResource:
+        GetLatestFor:
           Type:              Api
           Properties:
             Path:            /{version}
+            Method:          get
+        GetLatestOverall:
+          Type:              Api
+          Properties:
+            Path:            /
             Method:          get
   PutFunction:
     Type:                    AWS::Serverless::Function
