@@ -11,6 +11,8 @@ The project is packaged into an [AWS CloudFormation](https://aws.amazon.com/clou
 ## TODO
 
 - [ ] Develop an editor to write up the patch notes
+- [ ] Restrict access to `PUT` and `DELETE` methods
+- [ ] Set up DNS records to expose the API behind a human-readable URL
 - [ ] Use Swagger to describe the API
 
 ## Development
