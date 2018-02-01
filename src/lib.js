@@ -9,8 +9,13 @@ const doc = require('dynamodb-doc');
 const dynamo = new doc.DynamoDB(new AWS.DynamoDB());
 const semver = require('semver');
 
-function validateVersion(version) {
-  if (typeof version === 'undefined' || version === null || semver.valid(version)) {
+/**
+ * The version is valid if:
+ * - it actually sematically is, or:
+ * - `required` is falsy and so is `version`
+ **/
+function validateVersion(version, required = true) {
+  if (semver.valid(version) || (!required && !version)) {
     return Promise.resolve();
   }
 
@@ -45,7 +50,7 @@ function put(version, contents) {
  * Includes previous versions' patch notes (ordered by descending version number) iff `includePrevious` is truthy.
  **/
 function getRelevantPatchNotes(version, includePrevious) {
-  return validateVersion(version).then(() =>
+  return validateVersion(version, false).then(() =>
     dynamo.scan({ 'TableName': tableName }).promise().then(response => response.Items)
     .then(items => items
       .filter(version ? entry => semver.valid(entry.version) && semver.lte(entry.version, version) : () => true)
