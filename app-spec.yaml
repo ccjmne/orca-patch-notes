@@ -5,6 +5,7 @@ Resources:
   GetFunction:
     Type:                    AWS::Serverless::Function
     Properties:
+      CodeUri:               dist
       Handler:               index.get
       Runtime:               nodejs6.10
       Policies:              AmazonDynamoDBReadOnlyAccess
@@ -25,6 +26,7 @@ Resources:
   PutFunction:
     Type:                    AWS::Serverless::Function
     Properties:
+      CodeUri:               dist
       Handler:               index.put
       Runtime:               nodejs6.10
       Policies:              AmazonDynamoDBFullAccess
@@ -40,6 +42,7 @@ Resources:
   DeleteFunction:
     Type:                    AWS::Serverless::Function
     Properties:
+      CodeUri:               dist
       Handler:               index.delete
       Runtime:               nodejs6.10
       Policies:              AmazonDynamoDBFullAccess
