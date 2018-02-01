@@ -14,7 +14,7 @@ function validateVersion(version) {
     return Promise.resolve();
   }
 
-  throw new TypeError(`Invalid version: ${version}`);
+  throw new Error(`Invalid version: ${version}`);
 }
 
 function validateContents(contents) {
@@ -22,7 +22,7 @@ function validateContents(contents) {
     return Promise.resolve();
   }
 
-  throw `Patch notes contents cannot be empty`;
+  throw new Error(`Patch notes contents cannot be empty`);
 }
 
 function del(version) {

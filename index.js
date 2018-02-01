@@ -19,7 +19,7 @@ exports.get = function (event, context, callback) {
     return lib.getRelevantPatchNotes(request.getPathParameter('version'), !!request.getQueryParameter('previous'))
       .then(data => callback(null, new Response(data)));
   } catch (e) {
-    return Promise.resolve(callback(null, new Response(e, 400)));
+    return Promise.resolve(callback(null, new Response(e.message, 400)));
   }
 };
 
@@ -34,7 +34,7 @@ exports.put = function (event, context, callback) {
     return lib.put(request.getPathParameter('version'), request.getBody())
       .then(data => callback(null, new Response(data, 201)));
   } catch (e) {
-    return Promise.resolve(callback(null, new Response(e, 400)));
+    return Promise.resolve(callback(null, new Response(e.message, 400)));
   }
 };
 
@@ -49,6 +49,6 @@ exports.delete = function (event, context, callback) {
     return lib.delete(request.getPathParameter('version'))
       .then(data => callback(null, new Response(data, 204)));
   } catch (e) {
-    return Promise.resolve(callback(null, new Response(e, 400)));
+    return Promise.resolve(callback(null, new Response(e.message, 400)));
   }
 };
