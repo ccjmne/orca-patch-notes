@@ -6,17 +6,18 @@ const Request = require('./src/request');
 
 /**
  * Method: GET
- * Path: /patch-notes/{version}
+ * Path: /patch-notes/
  * Query Parameters:
+ * - version: string
  * - previous: Boolean
  * Return:
  *   Latest release notes for specified version, or latest altogether in no version specified.
  *   If `previous` is set, also includes all the patch notes leading to that version.
  **/
-exports.get = function (event, context, callback) {
+exports.list = function (event, context, callback) {
   try {
     const request = new Request(event);
-    return lib.getRelevantPatchNotes(request.getPathParameter('version'), !!request.getQueryParameter('previous'))
+    return lib.listRelevantPatchNotes(request.getQueryParameter('version'), !!request.getQueryParameter('previous'))
       .then(data => callback(null, new Response(data)));
   } catch (e) {
     return Promise.resolve(callback(null, new Response(e.message, 400)));

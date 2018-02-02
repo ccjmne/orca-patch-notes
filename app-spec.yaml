@@ -2,23 +2,18 @@ AWSTemplateFormatVersion:    '2010-09-09'
 Transform:                   AWS::Serverless-2016-10-31
 Description:                 Serverless application distributing patch notes for NCLS Development's Orca solution, using AWS CloudFormation.
 Resources:
-  GetFunction:
+  ListFunction:
     Type:                    AWS::Serverless::Function
     Properties:
       CodeUri:               dist
-      Handler:               index.get
+      Handler:               index.list
       Runtime:               nodejs6.10
       Policies:              AmazonDynamoDBReadOnlyAccess
       Environment:
         Variables:
           TABLE_NAME:        !Ref Table
       Events:
-        GetLatestFor:
-          Type:              Api
-          Properties:
-            Path:            /{version}
-            Method:          get
-        GetLatestOverall:
+        ListResources:
           Type:              Api
           Properties:
             Path:            /

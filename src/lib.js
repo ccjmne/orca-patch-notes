@@ -49,7 +49,7 @@ function put(version, contents) {
  * Returns latest patch notes for specified version, or latest overall if no version number specified.
  * Includes previous versions' patch notes (ordered by descending version number) iff `includePrevious` is truthy.
  **/
-function getRelevantPatchNotes(version, includePrevious) {
+function listRelevantPatchNotes(version, includePrevious) {
   return validateVersion(version, false).then(() =>
     dynamo.scan({ 'TableName': tableName }).promise().then(response => response.Items)
     .then(items => items
@@ -61,5 +61,5 @@ function getRelevantPatchNotes(version, includePrevious) {
 module.exports = {
   put: put,
   delete: del,
-  getRelevantPatchNotes: getRelevantPatchNotes
+  listRelevantPatchNotes: listRelevantPatchNotes
 };
