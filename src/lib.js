@@ -31,7 +31,14 @@ function validateContents(contents) {
 }
 
 function get(version) {
-  return validateVersion(version).then(() => dynamo.getItem({ 'TableName': tableName, 'Key': { version: version } }).promise());
+  return validateVersion(version).then(() => dynamo.getItem({ 'TableName': tableName, 'Key': { version: version } }).promise())
+    .then(response => {
+      if (response.Item) {
+        return response.Item;
+      }
+
+      throw new Error(`No patch notes matching version: ${version}`);
+    });
 }
 
 function del(version) {

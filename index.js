@@ -33,8 +33,9 @@ exports.list = function (event, context, callback) {
 exports.get = function (event, context, callback) {
   try {
     const request = new Request(event);
-    return lib.get(request.getPathParameter('version'))
-      .then(data => callback(null, new Response(data)));
+    return lib.get(request.getPathParameter('version')).then(
+      data => callback(null, new Response(data)),
+      e => callback(null, new Response(e.message, 404)));
   } catch (e) {
     return Promise.resolve(callback(null, new Response(e.message, 400)));
   }
