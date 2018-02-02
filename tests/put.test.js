@@ -1,15 +1,8 @@
 'use strict';
 
-var api = require('./api.dev');
+const api = require('./api.dev');
 
-/**
- * Path: patch-notes/1.1.5
- * Body: { "name": "eric", "age": 27 }
- */
-api.put({
-  'headers': null,
-  'pathParameters': { 'version': '1.1.5' },
-  'body': `
+const body = `
 # orca-patch-notes
 
 Serverless application distributing patch notes for [NCLS Development's Orca solution](https://www.orca-solution.com).
@@ -25,17 +18,24 @@ The project is packaged into an [AWS CloudFormation](https://aws.amazon.com/clou
 [\`orca-patch-notes-editor\`](https://github.com/ccjmne/orca-patch-notes-editor)
 
 Web application for editing and publishing patch notes for NCLS Development's Orca solution.
-`.trim()
+`.trim();
+
+/**
+ * Path: patch-notes/1.1.5
+ */
+api.put({
+  'headers': null,
+  'pathParameters': { 'version': '1.1.5' },
+  'body': body
 }, {}, console.log.bind(console)); // %%
 
 /**
  * Path: patch-notes/1.asdf.5
- * Body: { "name": "eric", "age": 27 }
  */
 api.put({
   'headers': null,
   'pathParameters': { 'version': '1.asdf.5' },
-  'body': JSON.stringify({ name: 'eric', age: 27 }, null, 2)
+  'body': body
 }, {}, console.log.bind(console)); // %%
 
 /**

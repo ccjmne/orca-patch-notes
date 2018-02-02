@@ -1,6 +1,6 @@
 'use strict';
 
-var api = require('./api.dev');
+const api = require('./api.dev');
 
 // DELETE patch-notes/1.1.5
 api.delete({

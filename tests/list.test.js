@@ -1,6 +1,6 @@
 'use strict';
 
-var api = require('./api.dev');
+const api = require('./api.dev');
 
 // patch-notes/?version=1.1.5&previous=true
 api.list({
