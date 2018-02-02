@@ -30,6 +30,10 @@ function validateContents(contents) {
   throw new Error(`Patch notes contents cannot be empty`);
 }
 
+function get(version) {
+  return validateVersion(version).then(() => dynamo.getItem({ 'TableName': tableName, 'Key': { version: version } }).promise());
+}
+
 function del(version) {
   return validateVersion(version).then(() => dynamo.deleteItem({ 'TableName': tableName, 'Key': { version: version } }).promise());
 }
@@ -59,6 +63,7 @@ function listRelevantPatchNotes(version, includePrevious) {
 }
 
 module.exports = {
+  get: get,
   put: put,
   delete: del,
   listRelevantPatchNotes: listRelevantPatchNotes

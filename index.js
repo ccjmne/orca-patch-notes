@@ -25,6 +25,22 @@ exports.list = function (event, context, callback) {
 };
 
 /**
+ * Method: GET
+ * Path: /patch-notes/{version}
+ * Return:
+ *   The patch notes associated with the provided version.
+ **/
+exports.get = function (event, context, callback) {
+  try {
+    const request = new Request(event);
+    return lib.get(request.getPathParameter('version'))
+      .then(data => callback(null, new Response(data)));
+  } catch (e) {
+    return Promise.resolve(callback(null, new Response(e.message, 400)));
+  }
+};
+
+/**
  * Method: PUT
  * Path: /patch-notes/{version}
  * Return: 201 Created

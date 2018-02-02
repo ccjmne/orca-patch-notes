@@ -18,6 +18,22 @@ Resources:
           Properties:
             Path:            /
             Method:          get
+  GetFunction:
+    Type:                    AWS::Serverless::Function
+    Properties:
+      CodeUri:               dist
+      Handler:               index.get
+      Runtime:               nodejs6.10
+      Policies:              AmazonDynamoDBReadOnlyAccess
+      Environment:
+        Variables:
+          TABLE_NAME:        !Ref Table
+      Events:
+        ListResources:
+          Type:              Api
+          Properties:
+            Path:            /{version}
+            Method:          get
   PutFunction:
     Type:                    AWS::Serverless::Function
     Properties:
