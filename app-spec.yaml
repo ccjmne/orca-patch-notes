@@ -1,77 +1,89 @@
-AWSTemplateFormatVersion:    '2010-09-09'
-Transform:                   AWS::Serverless-2016-10-31
-Description:                 Serverless application distributing patch notes for NCLS Development's Orca solution, using AWS CloudFormation.
+AWSTemplateFormatVersion:     '2010-09-09'
+Transform:                    AWS::Serverless-2016-10-31
+Description:                  Serverless application distributing patch notes for NCLS Development's Orca solution, using AWS CloudFormation.
 Resources:
   ListFunction:
-    Type:                    AWS::Serverless::Function
+    Type:                     AWS::Serverless::Function
     Properties:
-      CodeUri:               dist
-      Handler:               index.list
-      Runtime:               nodejs6.10
-      Policies:              AmazonDynamoDBReadOnlyAccess
+      CodeUri:                dist
+      Handler:                index.list
+      Runtime:                nodejs6.10
+      Policies:               AmazonDynamoDBReadOnlyAccess
       Environment:
         Variables:
-          TABLE_NAME:        !Ref Table
+          TABLE_NAME:         !Ref Table
       Events:
         ListResources:
-          Type:              Api
+          Type:               Api
           Properties:
-            Path:            /
-            Method:          get
+            Path:             /
+            Method:           get
+  OptionsFunction:
+    Type:                     AWS::Serverless::Function
+    Properties:
+      CodeUri:                dist
+      Handler:                index.options
+      Runtime:                nodejs6.10
+      Events:
+        PreflightRequest:
+          Type:               Api
+          Properties:
+            Path:             /{version}
+            Method:           options
   GetFunction:
-    Type:                    AWS::Serverless::Function
+    Type:                     AWS::Serverless::Function
     Properties:
-      CodeUri:               dist
-      Handler:               index.get
-      Runtime:               nodejs6.10
-      Policies:              AmazonDynamoDBReadOnlyAccess
+      CodeUri:                dist
+      Handler:                index.get
+      Runtime:                nodejs6.10
+      Policies:               AmazonDynamoDBReadOnlyAccess
       Environment:
         Variables:
-          TABLE_NAME:        !Ref Table
+          TABLE_NAME:         !Ref Table
       Events:
         ListResources:
-          Type:              Api
+          Type:               Api
           Properties:
-            Path:            /{version}
-            Method:          get
+            Path:             /{version}
+            Method:           get
   PutFunction:
-    Type:                    AWS::Serverless::Function
+    Type:                     AWS::Serverless::Function
     Properties:
-      CodeUri:               dist
-      Handler:               index.put
-      Runtime:               nodejs6.10
-      Policies:              AmazonDynamoDBFullAccess
+      CodeUri:                dist
+      Handler:                index.put
+      Runtime:                nodejs6.10
+      Policies:               AmazonDynamoDBFullAccess
       Environment:
         Variables:
-          TABLE_NAME:        !Ref Table
+          TABLE_NAME:         !Ref Table
       Events:
         PutResource:
-          Type:              Api
+          Type:               Api
           Properties:
-            Path:            /{version}
-            Method:          put
+            Path:             /{version}
+            Method:           put
   DeleteFunction:
-    Type:                    AWS::Serverless::Function
+    Type:                     AWS::Serverless::Function
     Properties:
-      CodeUri:               dist
-      Handler:               index.delete
-      Runtime:               nodejs6.10
-      Policies:              AmazonDynamoDBFullAccess
+      CodeUri:                dist
+      Handler:                index.delete
+      Runtime:                nodejs6.10
+      Policies:               AmazonDynamoDBFullAccess
       Environment:
         Variables:
-          TABLE_NAME:        !Ref Table
+          TABLE_NAME:         !Ref Table
       Events:
         DeleteResource:
-          Type:              Api
+          Type:               Api
           Properties:
-            Path:            /{version}
-            Method:          delete
+            Path:             /{version}
+            Method:           delete
   Table:
-    Type:                    AWS::Serverless::SimpleTable
+    Type:                     AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
-        Type:                'String'
-        Name:                'version'
+        Type:                 'String'
+        Name:                 'version'
       ProvisionedThroughput:
-        ReadCapacityUnits:   5 # default
-        WriteCapacityUnits:  5 # default
+        ReadCapacityUnits:    5 # default
+        WriteCapacityUnits:   5 # default

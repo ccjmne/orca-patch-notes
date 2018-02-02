@@ -70,3 +70,7 @@ exports.delete = function (event, context, callback) {
     return Promise.resolve(callback(null, new Response(e.message, 400)));
   }
 };
+
+exports.options = function (event, context, callback) {
+  return callback(null, new Response({}));
+};
