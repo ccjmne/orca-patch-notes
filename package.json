@@ -1,6 +1,6 @@
 {
   "name": "orca-patch-notes",
-  "version": "0.9.0-alpha.2",
+  "version": "0.9.0-alpha.3",
   "description": "Serverless application distributing patch notes for NCLS Development's Orca solution, using AWS CloudFormation",
   "main": "index.js",
   "scripts": {
