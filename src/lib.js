@@ -19,7 +19,7 @@ function validateVersion(version, required = true) {
     return Promise.resolve();
   }
 
-  throw new Error(`Invalid version: ${version}`);
+  throw new Error(`Invalid version number: ${version}`);
 }
 
 function validateContents(contents) {
@@ -37,7 +37,7 @@ function get(version) {
         return response.Item;
       }
 
-      throw new Error(`No patch notes matching version: ${version}`);
+      throw new Error(`No patch notes matching version number: ${version}`);
     });
 }
 
