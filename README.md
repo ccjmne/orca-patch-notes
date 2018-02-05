@@ -20,7 +20,7 @@ The [Angular 5](https://angular.io/) web application for editing and publishing 
 - [ ] Restrict access to `PUT` and `DELETE` methods
 - [ ] Set up DNS records to expose the API behind a human-readable URL
 - [ ] ~~Use Swagger to describe the API~~
-- [ ] Re-implement CORS the proper way (as soon as awslabs/serverless-application-model#248 is resolved)
+- [ ] Re-implement CORS the proper way (as soon as [awslabs/serverless-application-model#248](https://github.com/awslabs/serverless-application-model/issues/248) is resolved)
 
 ## Development
 
