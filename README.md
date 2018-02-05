@@ -8,12 +8,19 @@ The project is packaged into an [AWS CloudFormation](https://aws.amazon.com/clou
 - a collection of [AWS Lambda](https://aws.amazon.com/lambda/) functions that manipulate data stored in:
 - a single [AWS DynamoDB](https://aws.amazon.com/dynamodb/) table
 
+## See also
+
+[`orca-patch-notes-editor`](https://github.com/ccjmne/orca-patch-notes-editor)
+
+The [Angular 5](https://angular.io/) web application for editing and publishing patch notes as a front-end to this API.
+
 ## TODO
 
-- [ ] Develop an editor to write up the patch notes
+- [x] Develop an editor to write up the patch notes
 - [ ] Restrict access to `PUT` and `DELETE` methods
 - [ ] Set up DNS records to expose the API behind a human-readable URL
-- [ ] Use Swagger to describe the API
+- [ ] ~~Use Swagger to describe the API~~
+- [ ] Re-implement CORS the proper way (as soon as awslabs/serverless-application-model#248 is resolved)
 
 ## Development
 
