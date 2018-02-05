@@ -49,7 +49,7 @@ function put(version, contents) {
   return validateVersion(version).then(validateContents(contents)).then(() => dynamo.putItem({
     'TableName': tableName,
     'Item': {
-      version: version,
+      version: semver.clean(version),
       timestamp: new Date().getTime(),
       contents: contents
     }
