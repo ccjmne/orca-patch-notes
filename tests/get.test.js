@@ -8,7 +8,6 @@ api.get({
   'pathParameters': { 'version': '1.1.5' }
 }, {}, console.log.bind(console)); // %%
 
-
 // patch-notes/1.1.5
 api.get({
   'headers': null,
